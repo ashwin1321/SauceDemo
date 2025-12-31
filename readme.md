@@ -28,7 +28,7 @@ The automated tests I implemented cover the following scenarios:
 **Test Environment:**
 
 - Browser: Chrome (latest version)
-- OS: Windows / macOS / Linux
+- OS: MacOS
 
 **Tools & Frameworks Used:**
 
