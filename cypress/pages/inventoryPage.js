@@ -4,6 +4,7 @@ export default class InventoryPage {
 
         // define eleents
         this.selectDropdown = "select.product_sort_container[data-test='product-sort-container']"
+        this.header = "div.header_label"
         this.addToCartId = "#add-to-cart"
         this.carticon = "[data-test='shopping-cart-badge']"
         this.itemPrice = ".inventory_item_price"

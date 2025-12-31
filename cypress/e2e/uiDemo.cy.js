@@ -1,11 +1,12 @@
+import CartPage from "../pages/cartPage.js";
 import InventoryPage from "../pages/inventoryPage.js";
 import LoginPage from "../pages/LoginPage.js"
 
 let login = new LoginPage();
 let inventory = new InventoryPage();
+let cart = new CartPage();
 
 describe("UI demo Add to Cart", () => {
-
 
     it("Login and add to cart", () => {
 
@@ -19,7 +20,7 @@ describe("UI demo Add to Cart", () => {
 
             login.login("standard_user", "secret_sauce");
             cy.url().should("include", "/inventory")
-            cy.get("div.header_label").should("have.text", "Swag Labs")
+            cy.get(inventory.header).should("have.text", "Swag Labs")
             cy.log("-------- Login Completed successfully --------")
 
             // order by price high to low
@@ -86,8 +87,27 @@ describe("UI demo Add to Cart", () => {
             cy.url().should("include", "cart");
             cy.log("-------- Cart Icon Clicked, redirected to the cart page ------")
 
+            // checking if there are exactly two items in the cart list
+            cart.getCartLength().then(length => {
+                expect(length).to.eq(2);
+                cy.log("------ Cart Length Validated ------")
+            })
 
+            cy.log("-------- Checking the Cart Items and check if it is same as we expect --------")
+            cart.getItemName(0).then(name => {
+                // checking if the item is in any item list that was added earlier
+                const exists = firstItem.concat(secondItem).some(item => item.name === name);
+                expect(exists).to.be.true;
+                cy.log("------ 1st cart item Verified: " + name + " ------");
+            });
 
+            cart.getItemName(1).then(name => {
+                const exists = firstItem.concat(secondItem).some(item => item.name === name);
+                expect(exists).to.be.true;
+                cy.log("------ 2nd cart item Verified: " + name + " ------");
+            });
+
+            cy.log("-------- Cart Item Verified ---------")
 
         } catch (e) {
             console.log("Something went Wrong!" + e);
