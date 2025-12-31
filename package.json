@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "cypress": "^15.8.1"
+  }
+}
