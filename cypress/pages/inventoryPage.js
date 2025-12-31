@@ -3,8 +3,10 @@ export default class InventoryPage {
     constructor() {
 
         // define eleents
+        this.url = "/inventory"
         this.selectDropdown = "select.product_sort_container[data-test='product-sort-container']"
-        this.header = "div.header_label"
+        this.headerlabel = "div.header_label"
+        this.header = "Swag Labs"
         this.addToCartId = "#add-to-cart"
         this.carticon = "[data-test='shopping-cart-badge']"
         this.itemPrice = ".inventory_item_price"

@@ -1,6 +1,7 @@
 import CartPage from "../pages/cartPage.js";
 import InventoryPage from "../pages/inventoryPage.js";
 import LoginPage from "../pages/LoginPage.js"
+import topTwoItems from "../fixtures/topTwoItems.json"
 
 let login = new LoginPage();
 let inventory = new InventoryPage();
@@ -19,8 +20,8 @@ describe("UI demo Add to Cart", () => {
             login.visitUrl();
 
             login.login("standard_user", "secret_sauce");
-            cy.url().should("include", "/inventory")
-            cy.get(inventory.header).should("have.text", "Swag Labs")
+            cy.url().should("include", inventory.url)
+            cy.get(inventory.headerlabel).should("have.text", inventory.header)
             cy.log("-------- Login Completed successfully --------")
 
             // order by price high to low
@@ -29,13 +30,13 @@ describe("UI demo Add to Cart", () => {
 
             // checking the first product
             cy.get(inventory.itemPrice).first()
-                .should("contain", "$49.99")
+                .should("contain", topTwoItems.items[0].price)
                 .invoke("text")
                 .then(itemPrice => {
                     let price = itemPrice.trim();
 
                     cy.get(inventory.itemName).first()
-                        .should("have.text", "Sauce Labs Fleece Jacket")
+                        .should("have.text", topTwoItems.items[0].name)
                         .invoke("text")
                         .then(itemName => {
                             let name = itemName.trim();
@@ -47,13 +48,13 @@ describe("UI demo Add to Cart", () => {
                 })
             // finding 2nd nth element and verifying
             cy.get(inventory.itemPrice).eq(1)
-                .should("contain", "$29.99")
+                .should("contain", topTwoItems.items[1].price)
                 .invoke("text")
                 .then(itemPrice => {
                     let price = itemPrice.trim();
 
                     cy.get(inventory.itemName).eq(1)
-                        .should("have.text", "Sauce Labs Backpack")
+                        .should("have.text", topTwoItems.items[1].name)
                         .invoke("text")
                         .then(itemName => {
                             let name = itemName.trim();
