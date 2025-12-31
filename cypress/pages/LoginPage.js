@@ -2,24 +2,26 @@ export default class LoginPage {
 
     constructor() {
 
-        // define element
 
-        this.uname = "#user-name",
-            this.password = "#password"
-        this.loginButton = "#login-button"
+        this.uname = "#user-name";
+        this.password = "#password";
+        this.loginButton = "#login-button";
     }
 
     // visit the link
     visitUrl() {
+        const baseUrl = Cypress.config("baseUrl");
         cy.visit("/")
-    }
-
-    login(username, password) {
-
-        cy.get(this.uname).type(username)
-        cy.get(this.password).type(password)
-        cy.get(this.loginButton).click();
+        cy.log("------ Visiting Site: " + baseUrl)
     }
 
     // enter creds and login
+    login(username, password) {
+
+        cy.log("------- Entering Credentials --------")
+        cy.get(this.uname).type(username);
+        cy.get(this.password).type(password);
+        cy.log("------- Clicking LoginIn Button -------")
+        cy.get(this.loginButton).click();
+    }
 }
