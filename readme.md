@@ -62,8 +62,6 @@ npm install
 npm run headed
 ```
 
----
-
 #### Headless Mode : (Runs tests in the background without opening a browser window)
 
 ```bash
@@ -74,6 +72,8 @@ npm run Headless
 
 - After execution, test reports are generated in the report folder.
 - Open the HTML files in the folder to review the results.
+
+---
 
 ### Note
 
