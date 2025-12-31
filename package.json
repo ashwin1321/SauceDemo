@@ -1,5 +1,9 @@
 {
   "type": "module",
+  "scripts": {
+    "headed": "npx cypress open",
+    "headless": "npx cypress run"
+  },
   "dependencies": {
     "cypress": "^15.8.1"
   }
